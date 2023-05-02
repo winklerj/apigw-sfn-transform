@@ -1,8 +1,8 @@
 import { SSTConfig } from "sst";
 import { API } from "./stacks/API";
-import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { SimpleTable } from "./stacks/Table";
 import { StepFunction } from "./stacks/StepFunction";
+import { TransformStepFunction } from "./stacks/TransformStepFunction";
 
 export default {
   config(_input) {
@@ -14,6 +14,7 @@ export default {
   stacks(app) {
     app.stack(SimpleTable)
     .stack(StepFunction)
+    .stack(TransformStepFunction)
     .stack(API);
   }
 } satisfies SSTConfig;
