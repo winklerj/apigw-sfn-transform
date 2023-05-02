@@ -34,7 +34,6 @@ export async function handler(event: HttpApiEvent, context: Context, callback: C
 		}
 
 		if (!response) {
-			// callback('EMPTY_RESPONSE');
 			return 'EMPTY_RESPONSE';
 		}
 
