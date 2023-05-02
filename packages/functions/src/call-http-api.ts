@@ -34,24 +34,23 @@ export async function handler(event: HttpApiEvent, context: Context, callback: C
 		}
 
 		if (!response) {
-			callback('EMPTY_RESPONSE');
-			return;
+			// callback('EMPTY_RESPONSE');
+			return 'EMPTY_RESPONSE';
 		}
 
-		callback(null,{
+		return {
 			status: response.status,
 			headers: response.headers,
 			response: response.data,
-		});
+		};
 	} catch (error) {
 		logger.error(error);
-		callback(JSON.stringify({
+		throw new Error(JSON.stringify({
 			statusCode: error?.response?.status,
 			errors: [{
 				errorMessage: error.message,
 				data: error?.response?.data,
 			}],
 		}));
-		return;
 	}
 }
